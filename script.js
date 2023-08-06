@@ -28,6 +28,20 @@ let direction;
 
 loadPhoto(currentPhoto);
 
+// make thumbnails:
+collection.forEach((photo, index) => {
+    let htmlCont = `<img class="thn" data-number="${index}" src="${photo.photo}" alt="cat-thn">`
+    $("#thcont").append(htmlCont);
+});
+
+$(".thn").click((event) => {
+    let indexClicked = $(event.target).attr("data-number");
+    currentPhoto = parseInt(indexClicked);
+    // $(event.target).toggleClass("active");
+    loadPhoto(currentPhoto);
+
+});
+
 $("aside").click((e) => {
     let direction = e.target.className;
     if (direction == 'leftside') {

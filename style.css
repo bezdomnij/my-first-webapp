@@ -64,3 +64,30 @@ img {
     z-index: 9;
     width: 100%;
 }
+
+.thn {
+    width: 80px;
+    height: 80px;
+    border: 2px solid gray;
+    padding: 5px;
+    flex: 0 0 auto;
+}
+
+#thcont {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* border: thick solid green; */
+}
+
+footer {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;;
+    width: fit-content;
+    
+}
+
+.active {
+    border: solid thick greenyellow;
+}
