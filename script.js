@@ -16,7 +16,7 @@ const collection = [{
     description: 'Szonja at home in 2019',
 }, {
     photo: './images/cat-Szonja.jpeg',
-    title: 'Power nap',
+    title: 'Power nap before work',
     description: 'Szonja before the night shift starts.'
 }
 ];
@@ -30,14 +30,13 @@ loadPhoto(currentPhoto);
 
 // make thumbnails:
 collection.forEach((photo, index) => {
-    let htmlCont = `<img class="thn" data-number="${index}" src="${photo.photo}" alt="cat-thn">`
+    let htmlCont = `<div class="ic"><div class="title">${photo.title}</div><img class="thn" data-number="${index}" src="${photo.photo}" alt="cat-thn"></div>`
     $("#thcont").append(htmlCont);
 });
 
 $(".thn").click((event) => {
     let indexClicked = $(event.target).attr("data-number");
     currentPhoto = parseInt(indexClicked);
-    // $(event.target).toggleClass("active");
     loadPhoto(currentPhoto);
 
 });
