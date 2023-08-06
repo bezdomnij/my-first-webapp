@@ -73,21 +73,25 @@ img {
     flex: 0 0 auto;
 }
 
+.thn:hover {
+    background-color: darkgray;
+}
+
 #thcont {
     display: flex;
     justify-content: center;
     gap: 10px;
-    /* border: thick solid green; */
 }
 
 footer {
     margin-left: auto;
     margin-right: auto;
-    padding-top: 10px;;
+    padding-top: 10px;
+    ;
     width: fit-content;
-    
+
 }
 
 .active {
-    border: solid thick greenyellow;
+    border: solid thick blue;
 }

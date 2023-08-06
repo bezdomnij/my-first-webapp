@@ -42,6 +42,11 @@ $(".thn").click((event) => {
 
 });
 
+$(".thn").hover((event) => {
+    let whichOne = $(event.target).attr("data-number");
+    loadPhoto(parseInt(whichOne));
+})
+
 $("aside").click((e) => {
     let direction = e.target.className;
     if (direction == 'leftside') {
