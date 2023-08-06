@@ -5,7 +5,7 @@ const collection = [{
 }, {
     photo: './images/cat-4189697_1280.jpg',
     title: 'Sleeping cat',
-    description: 'Sleeping cat photo I found'
+    description: 'Sleeping kitten'
 }, {
     photo: './images/cat-nathan-riley-_ir1D49PRqM-unsplash.jpg',
     title: 'Watchful eye',
@@ -16,8 +16,12 @@ const collection = [{
     description: 'Szonja at home in 2019',
 }, {
     photo: './images/cat-Szonja.jpeg',
-    title: 'Power nap before work',
+    title: 'Power nap',
     description: 'Szonja before the night shift starts.'
+}, {
+    photo: './images/cat-SzonjaAT.jpeg',
+    title: 'Any questions?',
+    description: "I am ready to turn in for the rest of the day."
 }
 ];
 
@@ -27,10 +31,15 @@ const maximum = collection.length;
 let direction;
 
 loadPhoto(currentPhoto);
+makeThnActive(currentPhoto);
 
 // make thumbnails:
 collection.forEach((photo, index) => {
-    let htmlCont = `<div class="ic"><div class="title">${photo.title}</div><img class="thn" data-number="${index}" src="${photo.photo}" alt="cat-thn"></div>`
+    let thnClass = 'thn';
+    if (index == currentPhoto) {
+        thnClass = 'thn active'
+    }
+    let htmlCont = `<div class="ic"><div class="title">${photo.title}</div><img class="${thnClass}" data-number="${index}" src="${photo.photo}" alt="cat-thn"></div>`
     $("#thcont").append(htmlCont);
 });
 
@@ -38,13 +47,31 @@ $(".thn").click((event) => {
     let indexClicked = $(event.target).attr("data-number");
     currentPhoto = parseInt(indexClicked);
     loadPhoto(currentPhoto);
-
 });
 
-$(".thn").hover((event) => {
+$(".thn").mouseover((event) => {
     let whichOne = $(event.target).attr("data-number");
     loadPhoto(parseInt(whichOne));
+    setThnBorder(whichOne);
 })
+
+function setThnBorder(index) {
+    $('.thn').each((element, obj) => {
+        if ($(obj).hasClass('active')) {
+            $(obj).removeClass("active");
+        } else if (element == index) {
+            $(obj).addClass('active');
+        }
+    })
+}
+
+function makeThnActive(photoIndex) {
+    $('.thn').each((index, object) => {
+        if (index == photoIndex) {
+            $(object).toggleClass('active');
+        }
+    });
+}
 
 $("aside").click((e) => {
     let direction = e.target.className;
@@ -56,6 +83,7 @@ $("aside").click((e) => {
         console.log('The unexpected happened');
     }
     loadPhoto(currentPhoto);
+    setThnBorder(currentPhoto);
 });
 
 function loadPhoto(index) {
